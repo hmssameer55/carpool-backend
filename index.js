@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const makeDbConnection = require('./utils/db')
 const bodyParser = require('body-parser')
@@ -35,7 +36,7 @@ app.use("/users", userRouter)
 app.use("/offers", offerRouter)
 app.use("/rides", rideRouter)
 
-app.listen('3000', () => {
+app.listen(process.env.PORT || '3000', () => {
     console.log("listening at 3000")
     makeDbConnection()
 })

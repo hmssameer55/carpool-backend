@@ -1,0 +1,50 @@
+const {Schema,model}=require('mongoose')
+
+const offerSchema = new Schema ({
+    name:{
+        type:String
+    },
+    car:{
+        type:String
+    },  
+    vehicleNo:{
+        type:String
+    }, 
+    seatsLeft:{
+        type:Number
+    },
+    pickUP:{
+        type:String,
+        lowercase:true
+    },
+    destination:{ 
+        type:String, 
+        lowercase:true
+    },
+    date:{
+        type:String
+    },
+    price:{
+        type:Number
+    },
+    email:{
+        type:String
+    },
+    bookedBy:{
+            type:[
+                {
+                    user_id:{
+                        type:Schema.Types.ObjectId,
+                        unique:true,
+                        ref:'users'
+                    },
+                    user_name:{
+                        type:String
+                    }
+                }
+            ],
+            default:[]
+    }
+})
+
+module.exports=model("Offers",offerSchema)
